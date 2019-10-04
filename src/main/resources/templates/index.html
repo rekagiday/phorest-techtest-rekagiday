@@ -2,7 +2,7 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Clients</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -10,7 +10,7 @@
 <div>
     <h1>Search Client</h1>
 
-    <form action="/search">
+    <form action="/client">
         <label>
             Email address:
         </label>
@@ -27,7 +27,7 @@
     <table>
         <thead>
             <tr>
-                <th colspan="4">Name</th>
+                <th colspan="2">Name</th>
                 <th colspan="2">Phone</th>
                 <th colspan="2">Email</th>
             </tr>
@@ -35,18 +35,15 @@
         <tbody>
             <th:block th:each="client : ${clients}">
                 <tr>
-                    <td colspan="2" th:text="${client.firstName}" >...</td>
-                    <td colspan="2" th:text="${client.lastName}" >...</td>
+                    <td colspan="2" th:text="${client.firstName + ' ' + client.lastName}" >...</td>
                     <td colspan="2" th:text="${client.mobile}">...</td>
                     <td colspan="2" th:text="${client.email}">...</td>
-                    <td><button action="/addvoucher">add voucher</button></td>
+                    <td><a th:href="@{'/voucher/client?clientId=' + ${client.clientId}}">add voucher</a></td>
                 </tr>
             </th:block>
         </tbody>
     </table>
 </div>
-
-
 
 </body>
 </html>

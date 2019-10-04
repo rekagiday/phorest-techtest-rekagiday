@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Add Voucher</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<form method="post" action="#" th:action="@{/voucher}" th:object="${voucherDTO}">
+    <input class="form-control" style="display:none;"
+           type="text"
+           th:field="*{clientId}"
+           th:value="${client.clientId}"/>
+    <label>Amount: </label>
+    <input class="form-control"
+           type="number"
+           th:field="*{amount}"/>
+    <button>Submit</button>
+</form>
+
+</body>
+</html>
