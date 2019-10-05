@@ -6,6 +6,12 @@ public class Link {
     private String rel;
     private boolean templated;
 
+    public Link(String href, String rel, boolean templated) {
+        this.href = href;
+        this.rel = rel;
+        this.templated = templated;
+    }
+
     public String getHref() {
         return href;
     }

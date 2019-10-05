@@ -29,16 +29,17 @@ public class VoucherController {
     }
 
     @PostMapping(value = "/voucher")
-    public void addVoucher(@ModelAttribute("voucherDTO") NewVoucherDTO voucherDTO){
+    public String addVoucher(@ModelAttribute("voucherDTO") NewVoucherDTO voucherDTO, @RequestParam String clientId){
         Voucher voucher = new Voucher(voucherDTO.getClientId(), voucherDTO.getAmount(), System.getenv("branchId"));
 
         HttpResponse<JsonNode> response = Unirest.post(url + "/voucher")
                 .header("accept", "application/json")
+                .header("Content-Type", "application/json")
                 .basicAuth(System.getenv("Username"), System.getenv("Password"))
-                .field("voucher", voucher)
-                .field("businessId", System.getenv("businessId"))
+                .body(voucher)
                 .asJson();
 
+        return "redirect:/";
 
     }
 
