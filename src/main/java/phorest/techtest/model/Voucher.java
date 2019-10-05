@@ -1,15 +1,16 @@
 package phorest.techtest.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Voucher {
 
     private String clientId;
     private String creatingBranchId;
-    private Date issueDate;
-    private Date expiryDate;
+    private String issueDate;
+    private String expiryDate;
     private double originalBalance;
     private List<Link> links;
 
@@ -17,8 +18,9 @@ public class Voucher {
         this.clientId = clientId;
         this.originalBalance = originalBalance;
         this.creatingBranchId = branchId;
-        this.issueDate = new Date();
-        this.expiryDate = new Date(System.currentTimeMillis() + 2592000000L);  // 30 days expiry
+        this.issueDate = DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now());
+        this.expiryDate = DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now().plusMonths(1)); // 1 month expiry
         this.links = new ArrayList<>();
+        links.add(new Link("string","string", true));
     }
 }
