@@ -16,11 +16,11 @@ a:hover {
 
 h1 {
     padding: 50px;
-    text-align:center;
+    text-align: center;
 }
 
 .search, .create {
-    background-color:#d9eeec;
+    background-color: #D9EEEC;
     padding: 50px;
 }
 
@@ -30,7 +30,7 @@ h1 {
 }
 
 .centered {
-    text-align:center;
+    text-align: center;
 }
 
 .col-form-label {
