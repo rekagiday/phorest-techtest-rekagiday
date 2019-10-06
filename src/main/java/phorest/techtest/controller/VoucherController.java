@@ -10,6 +10,8 @@ import phorest.techtest.model.Client;
 import phorest.techtest.model.NewVoucherDTO;
 import phorest.techtest.model.Voucher;
 
+import javax.swing.*;
+
 @Controller
 public class VoucherController {
 
@@ -39,7 +41,8 @@ public class VoucherController {
                 .body(voucher)
                 .asJson();
 
-        return "redirect:/";
+
+        return "redirect:/?voucherAddedMessage=" + (response.isSuccess() ? "success" : "fail");
 
     }
 

@@ -4,32 +4,50 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Clients</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/acorn.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="all" href="/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Comfortaa&display=swap" rel="stylesheet">
 </head>
 <body>
-<div>
+<div class="alert alert-success" role="alert" th:if="${success} == 'success'">
+    Voucher successfully added!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="search">
     <h1>Search Client</h1>
-
     <form action="/client">
-        <label>
-            Email address:
-        </label>
-        <input type="email" name="email"/>
-        <br />
-        <label>
-            Phone number:
-        </label>
-        <input type="number" name="phone"/>
-        <button>Submit</button>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">
+                Email:
+            </label>
+            <div class="col-sm-3">
+                <input class="form-control" placeholder="Enter email" type="email" name="email"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">
+                Phone number:
+            </label>
+            <div class="col-sm-3">
+                <input class="form-control" placeholder="Enter phone number" type="text" name="phone"/>
+            </div>
+        </div>
+        <div class="centered">
+            <button class="btn btn-light">Submit</button>
+        </div>
     </form>
 </div>
 <div>
-    <table>
+    <table class="table clients" th:if="${clients.size()} > 0">
         <thead>
             <tr>
                 <th colspan="2">Name</th>
                 <th colspan="2">Phone</th>
                 <th colspan="2">Email</th>
+                <th colspan="2">Add Voucher</th>
             </tr>
         </thead>
         <tbody>
@@ -38,12 +56,14 @@
                     <td colspan="2" th:text="${client.firstName + ' ' + client.lastName}" >...</td>
                     <td colspan="2" th:text="${client.mobile}">...</td>
                     <td colspan="2" th:text="${client.email}">...</td>
-                    <td><a th:href="@{'/voucher/client?clientId=' + ${client.clientId}}">add voucher</a></td>
+                    <td class="plus"><a th:href="@{'/voucher/client?clientId=' + ${client.clientId}}">➕</a></td>
                 </tr>
             </th:block>
         </tbody>
     </table>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

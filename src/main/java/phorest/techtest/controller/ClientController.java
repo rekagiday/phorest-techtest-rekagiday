@@ -19,10 +19,11 @@ public class ClientController {
     private String url = "http://api-gateway-dev.phorest.com/third-party-api-server/api/business/" + System.getenv("businessId");
 
     @GetMapping
-    public ModelAndView index(){
+    public ModelAndView index(@RequestParam(required = false) String voucherAddedMessage){
         List<Client> clients = new ArrayList<>();
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("clients", clients);
+        mav.addObject("success", voucherAddedMessage);
         return mav;
     }
 
